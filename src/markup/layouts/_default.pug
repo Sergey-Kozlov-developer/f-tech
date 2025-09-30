@@ -19,15 +19,14 @@ html.no-js(lang="ru")
             include ../../assets/icons/sprite-mono.svg
             include ../../assets/icons/sprite-multi.svg
 
-        .wrapper
-            block header
-                include ../parts/default/_header.pug
+        block header
+            include ../parts/default/_header.pug
 
-            main
-                block content
+        main
+            block content
 
-            block footer
-                include ../parts/default/_footer.pug
+        block footer
+            include ../parts/default/_footer.pug
 
         block scripts
             script(src="js/main.js?v=" + version, type="module")

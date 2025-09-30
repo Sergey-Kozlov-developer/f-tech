@@ -28,71 +28,72 @@ const faviconSvg = `${config.src.assets.favicons}/favicon.svg`
 
 // Сборка таска
 export const faviconBuild = () => {
-  process.env.OPENSSL_CONF = '/dev/null'
+    process.env.OPENSSL_CONF = '/dev/null'
 
-  return (
-    src(faviconSvg) // входящий файл
-      .pipe(
-        // Отлавливаем и показываем ошибки в таске
-        plumber({
-          errorHandler: notify.onError(err => ({
-            title: 'Ошибка в задаче faviconBuild', // заголовок ошибки
-            sound: false, // уведомлять звуком
-            message: err.message, // описание ошибки
-          })),
-        }),
-      )
-      .pipe(svg2png()) // svg в png
+    return (
+        src(faviconSvg) // входящий файл
+            .pipe(
+                // Отлавливаем и показываем ошибки в таске
+                plumber({
+                    errorHandler: notify.onError(err => ({
+                        title: 'Ошибка в задаче faviconBuild', // заголовок ошибки
+                        sound: false, // уведомлять звуком
+                        message: err.message, // описание ошибки
+                    })),
+                }),
+            )
+            .pipe(svg2png()) // svg в png
 
-      // изменение разрешения картинки на 512х512
-      .pipe(
-        imageResize({
-          width: 512,
-          height: 512,
-          crop: true, // должно ли изображение быть обрезано до заданных размеров
-          upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-        }),
-      )
-      .pipe(rename('favicon-512.png')) // переименование файла
-      .pipe(dest(config.src.assets.favicons)) // исходящий файл
+            // изменение разрешения картинки на 512х512
+            .pipe(
+                imageResize({
+                    width: 512,
+                    height: 512,
+                    crop: true, // должно ли изображение быть обрезано до заданных размеров
+                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
+                    // imageMagick: true,
+                }),
+            )
+            .pipe(rename('favicon-512.png')) // переименование файла
+            .pipe(dest(config.src.assets.favicons)) // исходящий файл
 
-      // изменение разрешения картинки на 192х192
-      .pipe(
-        imageResize({
-          width: 192,
-          height: 192,
-          crop: true, // должно ли изображение быть обрезано до заданных размеров
-          upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-        }),
-      )
-      .pipe(rename('favicon-192.png')) // переименование файла
-      .pipe(dest(config.src.assets.favicons)) // исходящий файл
+            // изменение разрешения картинки на 192х192
+            .pipe(
+                imageResize({
+                    width: 192,
+                    height: 192,
+                    crop: true, // должно ли изображение быть обрезано до заданных размеров
+                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
+                }),
+            )
+            .pipe(rename('favicon-192.png')) // переименование файла
+            .pipe(dest(config.src.assets.favicons)) // исходящий файл
 
-      // изменение разрешения картинки на 180х180
-      .pipe(
-        imageResize({
-          width: 180,
-          height: 180,
-          crop: true, // должно ли изображение быть обрезано до заданных размеров
-          upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-        }),
-      )
-      .pipe(rename('apple-touch-icon.png')) // переименование файла
-      .pipe(dest(config.src.assets.favicons)) // исходящий файл
+            // изменение разрешения картинки на 180х180
+            .pipe(
+                imageResize({
+                    width: 180,
+                    height: 180,
+                    crop: true, // должно ли изображение быть обрезано до заданных размеров
+                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
+                }),
+            )
+            .pipe(rename('apple-touch-icon.png')) // переименование файла
+            .pipe(dest(config.src.assets.favicons)) // исходящий файл
 
-      // изменение разрешения картинки на 32х32
-      .pipe(
-        imageResize({
-          width: 32,
-          height: 32,
-          crop: true, // должно ли изображение быть обрезано до заданных размеров
-          upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-        }),
-      )
-      .pipe(ico('favicon.ico')) // переименование файла
-      .pipe(dest(config.src.assets.favicons)) // исходящий файл
-      .pipe(browserSync.stream()) // обновление страницы в браузере
-  )
+            // изменение разрешения картинки на 32х32
+            .pipe(
+                imageResize({
+                    width: 32,
+                    height: 32,
+                    crop: true, // должно ли изображение быть обрезано до заданных размеров
+                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
+                }),
+            )
+            .pipe(ico('favicon.ico')) // переименование файла
+            .pipe(dest(config.src.assets.favicons)) // исходящий файл
+            .pipe(browserSync.stream()) // обновление страницы в браузере
+    )
 }
 
 // Слежение за изменением файлов

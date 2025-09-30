@@ -1,10 +1,36 @@
 @use '../base/helpers' as *;
 
 .header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    // название анимации
+    animation-name: scrolling-header;
+    // завершение анимации на последнем элементе
+    // scrolling-header со значением to
+    animation-fill-mode: both;
+    // новое css свойство
+    animation-timeline: scroll();
+    // растояние прокручиваемой страницы от ее начала
+    animation-range: rem(100) rem(200);
+
+    // анимация тени у шапки меню
+    @keyframes scrolling-header {
+        to {
+            box-shadow: 0 0 1rem 0 var(--color-dark-40);
+        }
+    }
+
     &__promo {
         padding-block: rem(20);
         text-align: center;
+        background-color: var(--color-dark);
         border-bottom: var(--border);
+
+        @include mobile {
+            padding-block: rem(14);
+        }
+
         &-link {
             align-items: center;
             column-gap: rem(10);
@@ -23,6 +49,9 @@
     &__body {
         padding-block: rem(24);
         background-color: var(--color-dark-10);
+        @include mobile {
+            padding-block: rem(20);
+        }
         &-inner {
             display: flex;
             justify-content: space-between;
@@ -34,9 +63,29 @@
         @include mobile-above {
             display: contents;
         }
+
+        @include mobile {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 3rem;
+            padding: 1rem;
+            background-color: var(--color-dark-10);
+            transition-duration: var(--transition-duration);
+            &:not(.is-active) {
+                @include hide;
+
+                translate: 100%;
+            }
+        }
     }
 
     &__menu {
+        @include mobile {
+            overflow-y: auto;
+        }
         &-list {
             display: flex;
             align-items: center;
@@ -44,6 +93,10 @@
 
             @include laptop {
                 column-gap: rem(6);
+            }
+            @include mobile {
+                flex-direction: column;
+                row-gap: 1rem;
             }
         }
 
@@ -62,6 +115,13 @@
                 border: var(--border);
                 border-radius: rem(10);
                 pointer-events: none;
+            }
+        }
+        &__contact-us-link {
+            @include mobile {
+                width: 100%;
+                max-width: rem(300);
+                align-self: center;
             }
         }
     }
