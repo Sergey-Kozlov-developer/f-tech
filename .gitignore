@@ -1,0 +1,8 @@
+.idea/
+.vscode/
+node_modules/
+bin/
+build/
+
+src/assets/fonts/*
+!src/assets/fonts/.gitkeep
