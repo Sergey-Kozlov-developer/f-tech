@@ -16,6 +16,8 @@
     --color-red: #ff5500;
 
     --gradient: linear-gradient(45deg, var(--color-dark-15) 64%, var(--color-accent) 136%);
+
+    --gradient: linear-gradient(45deg, var(--color-dark-15) 64%, var(--color-accent) 136%);
     // переменная ширины border
     --border: #{rem(1)} solid var(--color-dark-15);
 
