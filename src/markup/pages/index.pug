@@ -2,7 +2,75 @@ extends ../layouts/_default.pug
 
 block variables
     - const pageTitle = "Home page";
-    - const pageDescription = "Gulp сборка для продуктивной верстки";
+    - const pageDescription = "Explore the Frontiers of Artificial Intelligence";
     - const pageLink = "";
 
 block content 
+    section.hero(aria-labelledby='hero-title') 
+        div.hero__main.container
+            div.hero__body
+                p.hero__subtitle Your Journey to Tomorrow Begins Here
+                h1#hero-title.hero__title Explore the Frontiers of Artificial Intelligence
+                div.hero__description 
+                    p Welcome to the epicenter of AI innovation. 
+                        | FutureTech AI News is your passport to a world where machines think, 
+                        | learn, and reshape the future. Join us on this visionary expedition into the 
+                        | heart of AI.
+
+            div.hero__metrics.metrics 
+                dl.metrics__list 
+                    div.metrics__item  
+                        dt.metrics__key Resources available
+                        dd.metrics__value.h3 
+                            | 300 
+                            span.metrics__sign +
+                    div.metrics__item  
+                        dt.metrics__key Total Downloads
+                        dd.metrics__value.h3 
+                            | 12k 
+                            span.metrics__sign +
+                    div.metrics__item  
+                        dt.metrics__key Active Users
+                        dd.metrics__value.h3 
+                            | 10k 
+                            span.metrics__sign +
+
+            div.hero__resources-preview.resources-preview
+                div.resources-preview__team.team 
+                    img(src="img/team/1.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
+                    img(src="img/team/2.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
+                    img(src="img/team/3.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
+                    img(src="img/team/4.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
+                
+                div.resources-preview__body 
+                    p.resources-preview__title.h5 Explore 1000+ resources
+                    p.resources-preview__subtitle Over 1,000 articles on emerging tech trends and breakthroughs.
+
+                a.resources-preview__button.button(href="/") 
+                    span Explore Resources 
+                    +icon('icon-yellow-arrow')(width="20", height="20")
+
+        div.hero__advantages
+            h2.visually-hidden Our advantages 
+            ul.hero__advantages-list.container 
+                li.hero__advantages-item 
+                    div.advantage-card 
+                        +icon('icon-advantages-1')(width="50", height="50")
+                        a.advantage-card__link.circle-icon(href="") 
+                            h3.advantage-card__title.h6 Latest News Updates
+                            p.advantage-card__subtitle Stay Current
+                        p.advantage-card__details Over 1,000 articles published monthly
+                li.hero__advantages-item 
+                    div.advantage-card 
+                        +icon('icon-advantages-2')(width="50", height="50")
+                        a.advantage-card__link.circle-icon(href="") 
+                            h3.advantage-card__title.h6 Expert Contributors
+                            p.advantage-card__subtitle Trusted Insights
+                        p.advantage-card__details 50+ renowned AI experts on our team
+                li.hero__advantages-item 
+                    div.advantage-card 
+                        +icon('icon-advantages-3')(width="50", height="50")
+                        a.advantage-card__link.circle-icon(href="") 
+                            h3.advantage-card__title.h6 Global Readership
+                            p.advantage-card__subtitle Worldwide Impact
+                        p.advantage-card__details 2 million monthly readers

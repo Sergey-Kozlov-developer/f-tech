@@ -1,42 +1,9 @@
-@font-face {
-  font-family: 'Kumbh Sans';
-  src: url('../fonts/KumbhSans-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Kumbh Sans';
-  src: url('../fonts/KumbhSans-Regular.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Inter';
-  src: url('../fonts/Inter-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Inter';
-  src: url('../fonts/Inter-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Inter';
-  src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Inter';
-  src: url('../fonts/Inter-Bold.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
+@use 'helpers' as *;
+
+@include font-face('Kumbh Sans', '../fonts/KumbhSans-Regular', 400);
+@include font-face('Kumbh Sans', '../fonts/KumbhSans-Regular', 500);
+
+@include font-face('Inter', '../fonts/Inter-Regular');
+@include font-face('Inter', '../fonts/Inter-Medium', 500);
+@include font-face('Inter', '../fonts/Inter-SemiBold', 600);
+@include font-face('Inter', '../fonts/Inter-Bold', 800);
