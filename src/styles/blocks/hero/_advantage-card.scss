@@ -42,8 +42,13 @@
             --circleMarginLeft: #{rem(14)};
             row-gap: rem(2);
         }
+
+        @include mobile {
+            --circleSize: #{rem(40)};
+        }
+
         &::after {
-            @include square(var(--circleMarginLeft));
+            @include square(var(--circleSize));
             @include abs-y;
 
             content: '';

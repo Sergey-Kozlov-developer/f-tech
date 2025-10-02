@@ -2,12 +2,14 @@
 
 .hero {
     &__main {
-        display: grid;
-        grid-template-columns: 60% auto;
-        grid-template-areas:
-            'body resources-preview'
-            'metrics resources-preview';
-        // grid-template-columns: ;
+        @include tablet-above {
+            display: grid;
+            grid-template-columns: 60% auto;
+            grid-template-areas:
+                'body resources-preview'
+                'metrics resources-preview';
+            // grid-template-columns: ;
+        }
     }
 
     &__body {
@@ -58,7 +60,7 @@
 
         @include tablet {
             &::before {
-                width: var(--100vw);
+                width: 100vw;
                 right: calc(var(--container-padding-x) * -1);
             }
         }
@@ -68,7 +70,7 @@
         grid-area: resources-preview;
         padding-left: rem(80);
         padding-bottom: rem(80);
-        border-left: var(--border);
+
         background: url('../img/resources-preview/bg.png') 0 0 / cover no-repeat;
 
         @include laptop {
@@ -81,7 +83,7 @@
         }
 
         @include tablet {
-            width: var(--100vw);
+            width: 100vw;
             margin-left: calc(var(--container-padding-x) * -1);
             padding: rem(100) rem(40) rem(40);
             background-image: url('../img/resources-preview/bg_tablet.png');
@@ -97,7 +99,7 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        padding-block: rem(50);
+        // padding-block: rem(50);
 
         &-item {
             --paddingX: #{rem(80)};

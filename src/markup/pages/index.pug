@@ -17,7 +17,7 @@ block content
                         | learn, and reshape the future. Join us on this visionary expedition into the 
                         | heart of AI.
 
-            div.hero__metrics.metrics 
+            div.hero__metrics.metrics.full-vw-line.full-vw-line--top.full-vw-line--left 
                 dl.metrics__list 
                     div.metrics__item  
                         dt.metrics__key Resources available
@@ -37,10 +37,10 @@ block content
 
             div.hero__resources-preview.resources-preview
                 div.resources-preview__team.team 
-                    img(src="img/team/1.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
-                    img(src="img/team/2.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
-                    img(src="img/team/3.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
-                    img(src="img/team/4.png", alt="", width='60', height='60', loading='lazy')(class='team__person')
+                    img(src="img/team/1.png", class='team__person', alt="", width='60', height='60', loading='lazy')
+                    img(src="img/team/2.png", class='team__person', alt="", width='60', height='60', loading='lazy')
+                    img(src="img/team/3.png", class='team__person', alt="", width='60', height='60', loading='lazy')
+                    img(src="img/team/4.png", class='team__person', alt="", width='60', height='60', loading='lazy')
                 
                 div.resources-preview__body 
                     p.resources-preview__title.h5 Explore 1000+ resources
@@ -55,21 +55,21 @@ block content
             ul.hero__advantages-list.container 
                 li.hero__advantages-item 
                     div.advantage-card 
-                        +icon('icon-advantages-1')(width="50", height="50")
+                        +icon('icon-advantages-1')(class='advantage-card__image', width="50", height="50")
                         a.advantage-card__link.circle-icon(href="") 
                             h3.advantage-card__title.h6 Latest News Updates
                             p.advantage-card__subtitle Stay Current
                         p.advantage-card__details Over 1,000 articles published monthly
                 li.hero__advantages-item 
                     div.advantage-card 
-                        +icon('icon-advantages-2')(width="50", height="50")
+                        +icon('icon-advantages-2')(class='advantage-card__image', width="50", height="50")
                         a.advantage-card__link.circle-icon(href="") 
                             h3.advantage-card__title.h6 Expert Contributors
                             p.advantage-card__subtitle Trusted Insights
                         p.advantage-card__details 50+ renowned AI experts on our team
                 li.hero__advantages-item 
                     div.advantage-card 
-                        +icon('icon-advantages-3')(width="50", height="50")
+                        +icon('icon-advantages-3')(class='advantage-card__image', width="50", height="50")
                         a.advantage-card__link.circle-icon(href="") 
                             h3.advantage-card__title.h6 Global Readership
                             p.advantage-card__subtitle Worldwide Impact
