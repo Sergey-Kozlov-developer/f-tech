@@ -12,14 +12,18 @@ header.header(data-js-header)
             div.header__overlay(data-js-header-overlay)
                 nav.header__menu
                     ul.header__menu-list 
-                        li.header__menu-item 
-                            a.header__menu-link.is-active(href="/") Home
-                        li.header__menu-item 
-                            a.header__menu-link(href="/") News
-                        li.header__menu-item 
-                            a.header__menu-link(href="/") Podcasts
-                        li.header__menu-item 
-                            a.header__menu-link(href="/") Resources
+                        each item, index in jsonData.headerNav 
+                            li.header__menu-item 
+                                if pageLink == item.link
+                                    a.header__menu-link.is-active(href=item.link) #{item.title}
+                                else 
+                                    a.header__menu-link(href=item.link) #{item.title}
+                        //- li.header__menu-item 
+                        //-     a.header__menu-link(href="/") News
+                        //- li.header__menu-item 
+                        //-     a.header__menu-link(href="/") Podcasts
+                        //- li.header__menu-item 
+                        //-     a.header__menu-link(href="/") Resources
 
                 a.header__contacts-us-link.button.button--accent(href="/") Contact Us 
             button.header__burger-button.burger-button.visible-mobile(

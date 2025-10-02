@@ -1,139 +1,139 @@
 [
     {
         "title": "Home",
-        "link": "/",
+        "link": "#!",
         "childes": [
             {
                 "title": "Features",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Blogs",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Resources",
-                "link": "/",
+                "link": "#!",
                 "badge": "New"
             },
             {
                 "title": "Testimonials",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Contact Us",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Newsletter",
-                "link": "/"
+                "link": "#!"
             }
         ]
     },
     {
         "title": "News",
-        "link": "/",
+        "link": "#!",
         "childes": [
             {
                 "title": "Trending Stories",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Featured Videos",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Technology",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Health",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Politics",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Environment",
-                "link": "/"
+                "link": "#!"
             }
         ]
     },
     {
         "title": "Blogs",
-        "link": "/",
+        "link": "#!",
         "childes": [
             {
                 "title": "Quantum Computing",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "AI Ethics",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Space Exploration",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Biotechnology",
-                "link": "/",
+                "link": "#!",
                 "badge": "New"
             },
             {
                 "title": "Renewable Energy",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Biohacking",
-                "link": "/"
+                "link": "#!"
             }
         ]
     },
     {
         "title": "Podcasts",
-        "link": "/",
+        "link": "#!",
         "childes": [
             {
                 "title": "AI Revolution",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "AI Revolution",
-                "link": "/",
+                "link": "#!",
                 "badge": "New"
             },
             {
                 "title": "TechTalk AI",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "AI Conversations",
-                "link": "/"
+                "link": "#!"
             }
         ]
     },
     {
         "title": "Resources",
-        "link": "/",
+        "link": "#!",
         "isButton": true,
         "childes": [
             {
                 "title": "Whitepapers",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Ebooks",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Reports",
-                "link": "/"
+                "link": "#!"
             },
             {
                 "title": "Research Papers",
-                "link": "/"
+                "link": "#!"
             }
         ]
     }
