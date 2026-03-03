@@ -13,87 +13,84 @@
  */
 
 // Сторонние библиотеки
-import { src, dest, watch, series } from 'gulp' // gulp плагин
+import { src, dest, watch } from 'gulp' // gulp плагин
 import plumber from 'gulp-plumber' // перехватывает ошибки
 import notify from 'gulp-notify' // уведомляет об ошибках
-import svg2png from 'gulp-svg2png' // svg в png
 import rename from 'gulp-rename' // переименование файла
-import imageResize from 'gulp-image-resize' // изменение разрешения картинки
 import ico from 'gulp-to-ico' // png в ico
+import merge from 'merge-stream'
+import sharp from 'sharp'
+import through2 from 'through2'
 
 // Конфиги
 import config from '../config.mjs'
 
 const faviconSvg = `${config.src.assets.favicons}/favicon.svg`
 
+const createSvgToPngTransform = size =>
+    through2.obj((file, _enc, cb) => {
+        if (file.isNull()) {
+            cb(null, file)
+            return
+        }
+
+        if (file.isStream()) {
+            cb(new Error('Streaming not supported in faviconBuild'))
+            return
+        }
+
+        sharp(file.contents)
+            .resize(size, size, {
+                fit: 'cover',
+                withoutEnlargement: true,
+            })
+            .png()
+            .toBuffer()
+            .then(buffer => {
+                file.contents = buffer
+                cb(null, file)
+            })
+            .catch(error => cb(error))
+    })
+
+const withPlumber = () =>
+    plumber({
+        errorHandler: notify.onError(err => ({
+            title: 'Ошибка в задаче faviconBuild',
+            sound: false,
+            message: err.message,
+        })),
+    })
+
 // Сборка таска
 export const faviconBuild = () => {
     process.env.OPENSSL_CONF = '/dev/null'
 
-    return (
-        src(faviconSvg) // входящий файл
-            .pipe(
-                // Отлавливаем и показываем ошибки в таске
-                plumber({
-                    errorHandler: notify.onError(err => ({
-                        title: 'Ошибка в задаче faviconBuild', // заголовок ошибки
-                        sound: false, // уведомлять звуком
-                        message: err.message, // описание ошибки
-                    })),
-                }),
-            )
-            .pipe(svg2png()) // svg в png
+    const png512 = src(faviconSvg)
+        .pipe(withPlumber())
+        .pipe(createSvgToPngTransform(512))
+        .pipe(rename('favicon-512.png'))
+        .pipe(dest(config.src.assets.favicons))
 
-            // изменение разрешения картинки на 512х512
-            .pipe(
-                imageResize({
-                    width: 512,
-                    height: 512,
-                    crop: true, // должно ли изображение быть обрезано до заданных размеров
-                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-                    // imageMagick: true,
-                }),
-            )
-            .pipe(rename('favicon-512.png')) // переименование файла
-            .pipe(dest(config.src.assets.favicons)) // исходящий файл
+    const png192 = src(faviconSvg)
+        .pipe(withPlumber())
+        .pipe(createSvgToPngTransform(192))
+        .pipe(rename('favicon-192.png'))
+        .pipe(dest(config.src.assets.favicons))
 
-            // изменение разрешения картинки на 192х192
-            .pipe(
-                imageResize({
-                    width: 192,
-                    height: 192,
-                    crop: true, // должно ли изображение быть обрезано до заданных размеров
-                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-                }),
-            )
-            .pipe(rename('favicon-192.png')) // переименование файла
-            .pipe(dest(config.src.assets.favicons)) // исходящий файл
+    const png180 = src(faviconSvg)
+        .pipe(withPlumber())
+        .pipe(createSvgToPngTransform(180))
+        .pipe(rename('apple-touch-icon.png'))
+        .pipe(dest(config.src.assets.favicons))
 
-            // изменение разрешения картинки на 180х180
-            .pipe(
-                imageResize({
-                    width: 180,
-                    height: 180,
-                    crop: true, // должно ли изображение быть обрезано до заданных размеров
-                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-                }),
-            )
-            .pipe(rename('apple-touch-icon.png')) // переименование файла
-            .pipe(dest(config.src.assets.favicons)) // исходящий файл
+    const icoStream = src(faviconSvg)
+        .pipe(withPlumber())
+        .pipe(createSvgToPngTransform(32))
+        .pipe(ico('favicon.ico'))
+        .pipe(dest(config.src.assets.favicons))
 
-            // изменение разрешения картинки на 32х32
-            .pipe(
-                imageResize({
-                    width: 32,
-                    height: 32,
-                    crop: true, // должно ли изображение быть обрезано до заданных размеров
-                    upscale: false, // может ли изображение быть увеличено, если указанные размеры больше, чем оригинальные размеры
-                }),
-            )
-            .pipe(ico('favicon.ico')) // переименование файла
-            .pipe(dest(config.src.assets.favicons)) // исходящий файл
-            .pipe(browserSync.stream()) // обновление страницы в браузере
-    )
+    return merge(png512, png192, png180, icoStream).pipe(browserSync.stream())
 }
 
 // Слежение за изменением файлов
